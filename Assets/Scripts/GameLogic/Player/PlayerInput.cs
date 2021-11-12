@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Player))]
 public class PlayerInput : MonoBehaviour
 {
     [SerializeField] private BallJumper _jumper;

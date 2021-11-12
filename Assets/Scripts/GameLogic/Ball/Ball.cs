@@ -5,24 +5,22 @@ using UnityEngine.Events;
 [RequireComponent(typeof(SphereCollider))]
 public class Ball : MonoBehaviour
 {
-    public BallJumper Jumper { get; private set; }
-
     public event UnityAction CoinCollided;
-
-    private void Awake()
-    {
-        Jumper = GetComponent<BallJumper>();
-    }
-
+    
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent(out Coin coin))
+        if (other.TryGetComponent(out Coin _))
         {
             CoinCollided?.Invoke();
         }
-        else if (other.TryGetComponent(out Obstacle obstacle))
+        else if (other.TryGetComponent(out IPlayerKiller _))
         {
-            
+            Die();
         }
+    }
+
+    private void Die()
+    {
+        Destroy(gameObject);
     }
 }
