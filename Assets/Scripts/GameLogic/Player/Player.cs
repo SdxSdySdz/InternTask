@@ -2,15 +2,18 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(PlayerInput))]
 public class Player : MonoBehaviour
 {
     [SerializeField] private Ball _ball;
-
+    
     private Wallet _wallet;
 
     public int CoinCount => _wallet.CoinCount;
+    
+    public event UnityAction CoinPickedUp;
 
     private void Awake()
     {
@@ -30,5 +33,6 @@ public class Player : MonoBehaviour
     private void OnCoinCollided()
     {
         _wallet.AddCoin();
+        CoinPickedUp?.Invoke();
     }
 }
