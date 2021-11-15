@@ -11,7 +11,12 @@ public class Player : MonoBehaviour
     private Wallet _wallet;
 
     public int CoinCount => _wallet.CoinCount;
-    
+
+    private void Awake()
+    {
+        _wallet = new Wallet();
+    }
+
     private void OnEnable()
     {
         _ball.CoinCollided += OnCoinCollided;

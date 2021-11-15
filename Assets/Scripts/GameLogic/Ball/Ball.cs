@@ -9,8 +9,9 @@ public class Ball : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent(out Coin _))
+        if (other.TryGetComponent(out Coin coin))
         {
+            coin.Disappear();
             CoinCollided?.Invoke();
         }
         else if (other.TryGetComponent(out IPlayerKiller _))

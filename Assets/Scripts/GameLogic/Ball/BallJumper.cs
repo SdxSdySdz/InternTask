@@ -8,7 +8,6 @@ public class BallJumper : MonoBehaviour
 {
     [SerializeField] private float _jumpForce;
     
-    
     private Rigidbody _rigidbody;
 
     private void Awake()
